@@ -1,33 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php $this->load->view('partials/header.php') ?>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Form New Post</title>
-</head>
-
-<body>
-  <h1>Tambah Artikel</h1>
-
-  <form method="POST">
-    <div>
-      <label>Judul</label>
-      <input type="text" name="title">
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('<?= base_url(); ?>assets/assets/img/home-bg.jpg')">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="site-heading">
+          <h1>Tambah Artikel</h1>
+        </div>
+      </div>
     </div>
+  </div>
+</header>
 
-    <div>
-      <label>URL</label>
-      <input type="text" name="url">
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+
+      <h1>Tambah Artikel</h1>
+
+      <form method="POST">
+        <div class="mb-3">
+          <label class="form-label">Judul</label>
+          <input class="form-control" type="text" name="title">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">URL</label>
+          <input class="form-control" type="text" name="url">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Konten</label>
+          <textarea class="form-control" name="content" id="" cols="30" rows="10"></textarea>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Simpan Artikel</button>
+      </form>
+
     </div>
+  </div>
+</div>
 
-    <div>
-      <label>Konten</label>
-      <textarea name="content" id="" cols="30" rows="10"></textarea>
-    </div>
-
-    <button type="submit">Simpan Artikel</button>
-  </form>
-</body>
-
-</html>
+<?php $this->load->view('partials/footer.php') ?>

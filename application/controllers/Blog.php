@@ -37,10 +37,12 @@ class Blog extends CI_Controller
 
       $id = $this->Blog_model->insertBlog($data);
 
-      if ($id)
+      if ($id) {
         echo "Data berhasil disimpan";
-      else
+        redirect('/');
+      } else {
         echo "Data gagal disimpan";
+      }
     }
 
     $this->load->view('form_add');
