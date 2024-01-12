@@ -19,24 +19,24 @@
 
       <h1>Tambah Artikel</h1>
 
-      <form method="POST">
+      <?= form_open(); ?>
         <div class="mb-3">
           <label class="form-label">Judul</label>
-          <input class="form-control" type="text" name="title">
+          <?= form_input('title', null, 'class="form-control"'); ?>
         </div>
 
         <div class="mb-3">
           <label class="form-label">URL</label>
-          <input class="form-control" type="text" name="url">
+          <?= form_input('url', null, 'class="form-control"'); ?>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Konten</label>
-          <textarea class="form-control" name="content" id="" cols="30" rows="10"></textarea>
+          <?= form_textarea('content', null, 'class="form-control" '); ?>
         </div>
 
         <button class="btn btn-primary" type="submit">Simpan Artikel</button>
-      </form>
+      <?= form_close(); ?>
 
     </div>
   </div>

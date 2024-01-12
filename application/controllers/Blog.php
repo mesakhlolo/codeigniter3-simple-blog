@@ -6,8 +6,8 @@ class Blog extends CI_Controller
   {
     parent::__construct();
 
-    $this->load->database();
-    $this->load->helper('url');
+    // library untuk database sudah di load di file autoload.php
+    // helper untuk url dan form sudah di load di file autoload.php
     $this->load->model('Blog_model');
   }
 
