@@ -19,26 +19,29 @@
 
       <h1>Edit Artikel</h1>
 
-      <form method="POST">
-        <div class="mb-3">
-          <label class="form-label">Judul</label>
-          <input class="form-control" type="text" name="title" value="<?= $blog['title']; ?>">
-        </div>
+      <?= form_open_multipart(); ?>
+      <div class="mb-3">
+        <label class="form-label">Judul</label>
+        <?= form_input('title', $blog['title'], 'class="form-control"') ?>
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label">URL</label>
-          <input class="form-control" type="text" name="url" value="<?= $blog['url']; ?>">
-        </div>
+      <div class="mb-3">
+        <label class="form-label">URL</label>
+        <?= form_input('url', $blog['url'], 'class="form-control"') ?>
+      </div>
 
-        <div class="mb-3">
-          <label class="form-label">Konten</label>
-          <textarea class="form-control" name="content" id="" cols="30" rows="10">
-            <?= $blog['content']; ?>
-          </textarea>
-        </div>
+      <div class="mb-3">
+        <label class="form-label">Konten</label>
+        <?= form_textarea('content', $blog['content'], 'class="form-control"') ?>
+      </div>
 
-        <button class="btn btn-primary" type="submit">Simpan Artikel</button>
-      </form>
+      <div class="mb-3">
+        <label class="form-label">Cover</label>
+        <?= form_upload('cover', $blog['cover'], 'class="form-control"') ?>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Simpan Artikel</button>
+      <?= form_close(); ?>
 
     </div>
   </div>
