@@ -19,7 +19,7 @@
 
       <h1>Tambah Artikel</h1>
 
-      <?= form_open(); ?>
+      <?= form_open_multipart() ?>
         <div class="mb-3">
           <label class="form-label">Judul</label>
           <?= form_input('title', null, 'class="form-control"'); ?>
@@ -32,7 +32,12 @@
 
         <div class="mb-3">
           <label class="form-label">Konten</label>
-          <?= form_textarea('content', null, 'class="form-control" '); ?>
+          <?= form_textarea('content', null, 'class="form-control"'); ?>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Cover</label>
+          <?= form_upload('cover', null, 'class="form-control"'); ?>
         </div>
 
         <button class="btn btn-primary" type="submit">Simpan Artikel</button>

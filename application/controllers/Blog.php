@@ -8,6 +8,7 @@ class Blog extends CI_Controller
 
     // library untuk database sudah di load di file autoload.php
     // helper untuk url dan form sudah di load di file autoload.php
+    // library / helper yang diload di autoload.php bisa digunakan di controller apapun
     $this->load->model('Blog_model');
   }
 
@@ -34,6 +35,23 @@ class Blog extends CI_Controller
       $data['title'] = $this->input->post('title');
       $data['content'] = $this->input->post('content');
       $data['url'] = $this->input->post('url');
+
+      $config['upload_path']          = './uploads/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $config['max_size']             = 100;
+      $config['max_width']            = 1024;
+      $config['max_height']           = 768;
+
+      $this->load->library('upload', $config);
+
+      if (!$this->upload->do_upload('cover')) 
+      {
+        echo $this->upload->display_errors();
+      } 
+      else 
+      {
+        $data['cover'] = $this->upload->data()['file_name'];
+      }
 
       $id = $this->Blog_model->insertBlog($data);
 
