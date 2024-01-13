@@ -80,10 +80,9 @@ class Blog extends CI_Controller
       $config['max_height']           = 768;
 
       $this->load->library('upload', $config);
+      $this->upload->do_upload('cover');
 
-      if (!$this->upload->do_upload('cover')) {
-        echo $this->upload->display_errors();
-      } else {
+      if (!empty($this->upload->data()['file_name'])) {
         $post['cover'] = $this->upload->data()['file_name'];
       }
 
