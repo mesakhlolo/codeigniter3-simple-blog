@@ -47,6 +47,9 @@ class Blog extends CI_Controller
       $data['title'] = $this->input->post('title');
       $data['content'] = $this->input->post('content');
       $data['url'] = $this->input->post('url');
+      // mengambil data untuk date (timezone jakarta)
+      date_default_timezone_set('Asia/Jakarta');
+      $data['date'] = date('Y-m-d H:i:s', time());
 
       $config['upload_path']          = './uploads/';
       $config['allowed_types']        = 'gif|jpg|png';
