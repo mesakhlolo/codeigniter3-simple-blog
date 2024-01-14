@@ -17,8 +17,6 @@
   <div class="row">
     <div class="col-md-8 mx-auto">
 
-      <h1>Tambah Artikel</h1>
-
       <div class="alert alert-warning">
         <?= validation_errors(); ?>
       </div>

@@ -6,7 +6,7 @@
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="site-heading">
-          <h1>Tambah Artikel</h1>
+          <h1>Edit Artikel</h1>
         </div>
       </div>
     </div>
@@ -17,22 +17,24 @@
   <div class="row">
     <div class="col-md-8 mx-auto">
 
-      <h1>Edit Artikel</h1>
+      <div class="alert alert-warning">
+        <?= validation_errors(); ?>
+      </div>
 
       <?= form_open_multipart(); ?>
       <div class="mb-3">
         <label class="form-label">Judul</label>
-        <?= form_input('title', $blog['title'], 'class="form-control"') ?>
+        <?= form_input('title', set_value('title', $blog['title']), 'class="form-control"') ?>
       </div>
 
       <div class="mb-3">
         <label class="form-label">URL</label>
-        <?= form_input('url', $blog['url'], 'class="form-control"') ?>
+        <?= form_input('url', set_value('url', $blog['url']), 'class="form-control"') ?>
       </div>
 
       <div class="mb-3">
         <label class="form-label">Konten</label>
-        <?= form_textarea('content', $blog['content'], 'class="form-control"') ?>
+        <?= form_textarea('content', set_value('content', $blog['content']), 'class="form-control"') ?>
       </div>
 
       <div class="mb-3">
