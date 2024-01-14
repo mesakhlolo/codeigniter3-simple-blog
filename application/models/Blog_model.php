@@ -2,12 +2,22 @@
 
 class Blog_model extends CI_Model
 {
-  public function getBlogs()
+  public function getBlogs($limit, $offset)
+  {
+    $filter = $this->input->get('find');
+    $this->db->like('title', $filter);
+    $this->db->limit($limit, $offset);
+    $this->db->order_by('date', 'desc');  
+
+    return $this->db->get('blog');
+  }
+
+  public function getTotalBlogs()
   {
     $filter = $this->input->get('find');
     $this->db->like('title', $filter);
 
-    return $this->db->get("blog");
+    return $this->db->count_all_results('blog');
   }
 
   public function getSingleBlog($field, $value)
@@ -20,7 +30,7 @@ class Blog_model extends CI_Model
   public function insertBlog($data)
   {
     $this->db->insert('blog', $data);
-    
+
     return $this->db->insert_id();
   }
 

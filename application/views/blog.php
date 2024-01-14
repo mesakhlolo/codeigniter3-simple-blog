@@ -41,6 +41,8 @@
         <hr class="my-4" />
       <?php endforeach; ?>
 
+      <?= $this->pagination->create_links(); ?>
+
     </div>
   </div>
 </div>
