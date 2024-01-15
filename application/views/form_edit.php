@@ -16,10 +16,15 @@
 <div class="container mb-5">
   <div class="row">
     <div class="col-md-8 mx-auto">
+      
+      <?php
+      // menampilkan error message bila ada error
+      $error_message = validation_errors();
 
-      <div class="alert alert-warning">
-        <?= validation_errors(); ?>
-      </div>
+      if (!empty($error_message)) {
+        echo '<div class="alert alert-warning">' . $error_message . '</div>';
+      }
+      ?>
 
       <?= form_open_multipart(); ?>
       <div class="mb-3">

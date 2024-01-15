@@ -17,9 +17,14 @@
   <div class="row">
     <div class="col-md-8 mx-auto">
 
-      <div class="alert alert-warning">
-        <?= validation_errors(); ?>
-      </div>
+      <?php
+      // menampilkan error message bila ada error
+      $error_message = validation_errors();
+
+      if (!empty($error_message)) {
+        echo '<div class="alert alert-warning">' . $error_message . '</div>';
+      }
+      ?>
 
       <?= form_open_multipart() ?>
       <div class="mb-3">
