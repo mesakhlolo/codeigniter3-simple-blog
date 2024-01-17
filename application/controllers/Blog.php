@@ -10,6 +10,7 @@ class Blog extends CI_Controller
     // helper untuk url dan form sudah di load di file autoload.php
     // library / helper yang diload di autoload.php bisa digunakan di controller apapun
     $this->load->model('Blog_model');
+    $this->load->library('session');
   }
 
   public function index($offset = 0)
@@ -19,7 +20,7 @@ class Blog extends CI_Controller
     $config['base_url'] = site_url('blog/index');
     $config['total_rows'] = $this->Blog_model->getTotalBlogs();
     $config['per_page'] = 3;
-    
+
     $this->pagination->initialize($config);
 
     $query = $this->Blog_model->getBlogs($config['per_page'], $offset);
@@ -68,10 +69,11 @@ class Blog extends CI_Controller
       $id = $this->Blog_model->insertBlog($data);
 
       if ($id) {
-        echo "Data berhasil disimpan";
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Artikel berhasil ditambahkan</div>');
         redirect('/');
       } else {
-        echo "Data gagal disimpan";
+        $this->session->set_flashdata('message', '<div class="alert alert-warning">Artikel gagal ditambahkan</div>');
+        redirect('/');
       }
     }
 
@@ -107,10 +109,13 @@ class Blog extends CI_Controller
 
       $id = $this->Blog_model->updateBlog($id, $post);
 
-      if ($id)
-        echo "Data berhasil disimpan";
-      else
-        echo "Data gagal disimpan";
+      if ($id) {
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Artikel berhasil diedit</div>');
+        redirect('/');
+      } else {
+        $this->session->set_flashdata('message', '<div class="alert alert-warning">Artikel gagal diedit</div>');
+        redirect('/');
+      }
     }
 
     $this->load->view('form_edit', $data);
@@ -118,7 +123,13 @@ class Blog extends CI_Controller
 
   public function delete($id)
   {
-    $this->Blog_model->deleteBlog($id);
+    $result = $this->Blog_model->deleteBlog($id);
+
+    if($result) {
+      $this->session->set_flashdata('message', '<div class="alert alert-success">Artikel berhasil dihapus</div>');
+    } else {
+      $this->session->set_flashdata('message', '<div class="alert alert-warning">Artikel gagal dihapus</div>');
+    }
 
     redirect('/');
   }

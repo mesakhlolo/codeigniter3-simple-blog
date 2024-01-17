@@ -19,6 +19,8 @@
   <div class="row gx-4 gx-lg-5 justify-content-center">
     <div class="col-md-10 col-lg-8 col-xl-7">
 
+      <?= $this->session->flashdata('message'); ?>
+
       <form method="GET">
         <input type="text" name="find">
         <button type="submit">Cari</button>
@@ -33,7 +35,7 @@
           <p class="post-meta">
             Posted on <?= $blog['date']; ?>
             <a href="<?= site_url('blog/edit/' . $blog['id']); ?>">Edit</a>
-            <a href="<?= site_url('blog/delete/' . $blog['id']); ?>">Delete</a>
+            <a href="<?= site_url('blog/delete/' . $blog['id']); ?>" onclick="return confirm('Yakin mau delete cuy?')">Delete</a>
           </p>
           <p><?= $blog['content']; ?></p>
         </div>
@@ -48,4 +50,3 @@
 </div>
 
 <?php $this->load->view('partials/footer.php') ?>
-
