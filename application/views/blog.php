@@ -34,8 +34,10 @@
           </a>
           <p class="post-meta">
             Posted on <?= $blog['date']; ?>
-            <a href="<?= site_url('blog/edit/' . $blog['id']); ?>">Edit</a>
-            <a href="<?= site_url('blog/delete/' . $blog['id']); ?>" onclick="return confirm('Yakin mau delete cuy?')">Delete</a>
+            <?php if (isset($_SESSION['username'])) : ?>
+              <a href="<?= site_url('blog/edit/' . $blog['id']); ?>">Edit</a>
+              <a href="<?= site_url('blog/delete/' . $blog['id']); ?>" onclick="return confirm('Yakin mau delete cuy?')">Delete</a>
+            <?php endif; ?>
           </p>
           <p><?= $blog['content']; ?></p>
         </div>

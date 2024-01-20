@@ -125,11 +125,38 @@ class Blog extends CI_Controller
   {
     $result = $this->Blog_model->deleteBlog($id);
 
-    if($result) {
+    if ($result) {
       $this->session->set_flashdata('message', '<div class="alert alert-success">Artikel berhasil dihapus</div>');
     } else {
       $this->session->set_flashdata('message', '<div class="alert alert-warning">Artikel gagal dihapus</div>');
     }
+
+    redirect('/');
+  }
+
+  public function login()
+  {
+    if ($this->input->post()) {
+      $username = $this->input->post('username');
+      $password = $this->input->post('password');
+
+      if ($username == 'admin' && $password == 'admin') {
+        $_SESSION['username'] = 'admin';
+
+        redirect('/');
+      } else {
+        $this->session->set_flashdata('message', '<div class="alert alert-warning">Username / Password tidak valid.</div>');
+
+        redirect('blog/login');
+      }
+    }
+
+    $this->load->view('login');
+  }
+
+  public function logout()
+  {
+    $this->session->sess_destroy();
 
     redirect('/');
   }
